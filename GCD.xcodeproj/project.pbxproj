@@ -63,9 +63,6 @@
 				F90E2C3B1E9B1F32009A509E /* ViewController.h */,
 				F90E2C3C1E9B1F32009A509E /* ViewController.m */,
 				F90E2C3E1E9B1F32009A509E /* Main.storyboard */,
-				F90E2C411E9B1F32009A509E /* Assets.xcassets */,
-				F90E2C431E9B1F32009A509E /* LaunchScreen.storyboard */,
-				F90E2C461E9B1F32009A509E /* Info.plist */,
 				F90E2C351E9B1F32009A509E /* Supporting Files */,
 			);
 			path = GCD;
@@ -74,6 +71,9 @@
 		F90E2C351E9B1F32009A509E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F90E2C411E9B1F32009A509E /* Assets.xcassets */,
+				F90E2C431E9B1F32009A509E /* LaunchScreen.storyboard */,
+				F90E2C461E9B1F32009A509E /* Info.plist */,
 				F90E2C361E9B1F32009A509E /* main.m */,
 			);
 			name = "Supporting Files";
@@ -274,7 +274,7 @@
 				DEVELOPMENT_TEAM = MHN2XFC72U;
 				INFOPLIST_FILE = GCD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sw.GCD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zsw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -286,7 +286,7 @@
 				DEVELOPMENT_TEAM = MHN2XFC72U;
 				INFOPLIST_FILE = GCD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sw.GCD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zsw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
