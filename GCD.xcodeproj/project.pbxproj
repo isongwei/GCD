@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		263E01D31FE8056E00B55FC7 /* GCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263E01D11FE8056E00B55FC7 /* GCDViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		263E01D41FE8056E00B55FC7 /* GCDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263E01D21FE8056E00B55FC7 /* GCDViewController.xib */; };
 		F90E2C371E9B1F32009A509E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F90E2C361E9B1F32009A509E /* main.m */; };
 		F90E2C3A1E9B1F32009A509E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F90E2C391E9B1F32009A509E /* AppDelegate.m */; };
 		F90E2C3D1E9B1F32009A509E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90E2C3C1E9B1F32009A509E /* ViewController.m */; };
@@ -16,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		263E01D01FE8056E00B55FC7 /* GCDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDViewController.h; sourceTree = "<group>"; };
+		263E01D11FE8056E00B55FC7 /* GCDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDViewController.m; sourceTree = "<group>"; };
+		263E01D21FE8056E00B55FC7 /* GCDViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCDViewController.xib; sourceTree = "<group>"; };
 		F90E2C321E9B1F32009A509E /* GCD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90E2C361E9B1F32009A509E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F90E2C381E9B1F32009A509E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,6 +67,9 @@
 				F90E2C391E9B1F32009A509E /* AppDelegate.m */,
 				F90E2C3B1E9B1F32009A509E /* ViewController.h */,
 				F90E2C3C1E9B1F32009A509E /* ViewController.m */,
+				263E01D01FE8056E00B55FC7 /* GCDViewController.h */,
+				263E01D11FE8056E00B55FC7 /* GCDViewController.m */,
+				263E01D21FE8056E00B55FC7 /* GCDViewController.xib */,
 				F90E2C3E1E9B1F32009A509E /* Main.storyboard */,
 				F90E2C351E9B1F32009A509E /* Supporting Files */,
 			);
@@ -141,6 +149,7 @@
 				F90E2C451E9B1F32009A509E /* LaunchScreen.storyboard in Resources */,
 				F90E2C421E9B1F32009A509E /* Assets.xcassets in Resources */,
 				F90E2C401E9B1F32009A509E /* Main.storyboard in Resources */,
+				263E01D41FE8056E00B55FC7 /* GCDViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +163,7 @@
 				F90E2C3D1E9B1F32009A509E /* ViewController.m in Sources */,
 				F90E2C3A1E9B1F32009A509E /* AppDelegate.m in Sources */,
 				F90E2C371E9B1F32009A509E /* main.m in Sources */,
+				263E01D31FE8056E00B55FC7 /* GCDViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +320,7 @@
 				F90E2C4B1E9B1F32009A509E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "GCDViewController.h"
 
 @interface ViewController ()
 
@@ -299,6 +300,14 @@
 
 
 
+#pragma mark =============<#详情#>=============
+
+-(IBAction)gcd{
+    
+    GCDViewController * vc = [[GCDViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 
 
 
