@@ -162,13 +162,18 @@
         NSLog(@"2");
     });
     
-    dispatch_group_wait(group1, DISPATCH_TIME_FOREVER);
+    
     //DISPATCH_TIME_FOREVER
     //只要属于该group的处理没有执行完就一直等待下去
+    //因为一直等
+    dispatch_group_wait(group1, DISPATCH_TIME_FOREVER);
     
     dispatch_release(group1);
     
+    
     dispatch_time_t time1 = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    
+    
     long result = dispatch_group_wait(group1, time1);
     
     
@@ -179,19 +184,42 @@
         //属于该group的还在执行中
     }
     
-    //这里的等待意味着  一旦调用此函数
+    
+    
+    //直接判断是否执行结束
+    //不过可以直接使用notify
+    long result1= dispatch_group_wait(group1, DISPATCH_TIME_NOW);
     
     
     
+#pragma mark - ===============dispatch_barrier_async===============
+    
+    //前面的serial  可以避免数据竞争问题
+    //但是如果只是读取的并行问题则可以  所以为了高效的读取  可以放到  concurrent queue
+    
+    
+    //也就是读取追加到concurrent中
+    //也就是写入追加到serial中
+    
+    //现在有更快捷方便的方法
+    dispatch_queue_t queue30 = dispatch_queue_create("com.zsw.sss", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_async(queue30, ^{
+        NSLog(@"reading0");
+    });
+    dispatch_async(queue30, ^{
+        NSLog(@"reading1");
+    });
+    dispatch_async(queue30, ^{
+        NSLog(@"reading2");
+    });
+    dispatch_async(queue30, ^{
+        NSLog(@"reading3");
+    });
     
     
     
-    
-    
-    
-    
-    
-    
+    dispatch_release(queue30);
     
     
     
