@@ -19,13 +19,12 @@
     
     //常用的介绍
     
-    dispatch_queue_t queue = dispatch_get_global_queue(1, 1);
-    
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+
     dispatch_async(queue, ^{
     //长时间处理
-        
         //ar画像识别
-        
+
     });
     
     
@@ -112,6 +111,85 @@
 #pragma mark =============Dispatch Group=============
     
 
+    //当有多个处理, 想全部结束后进行处理, 就需要用这个
+    //如果只有一个 serial queue 队列  可以实现
+    //但是如果有多个  就不行了
+    
+    //现在可以进行  全部加到一个group中
+    
+    dispatch_queue_t queue20 = dispatch_get_global_queue(0, 0);
+    dispatch_group_t  group = dispatch_group_create();
+    
+    
+    dispatch_group_async(group, queue20, ^{
+        NSLog(@"0");
+    });
+    dispatch_group_async(group, queue20, ^{
+        NSLog(@"1");
+    });
+    
+    dispatch_group_async(group, queue20, ^{
+        NSLog(@"2");
+    });
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        //无论是并行还是串行  队列加处理
+        
+        //一旦执行结束就会加上这个处理
+        
+        NSLog(@"一定最后执行");
+    });
+    
+    //顺序是乱序
+    //带create 所需要 release
+    dispatch_release(group);
+    
+    
+    
+    
+#pragma mark - ===============dispatch_group_wait===============
+    
+    dispatch_queue_t  queue21 = dispatch_get_global_queue(0, 0  );
+    dispatch_group_t  group1 = dispatch_group_create();
+    
+    dispatch_group_async(group1, queue21, ^{
+        NSLog(@"0");
+    });
+    dispatch_group_async(group1, queue21, ^{
+        NSLog(@"1");
+    });
+    dispatch_group_async(group1, queue21, ^{
+        NSLog(@"2");
+    });
+    
+    dispatch_group_wait(group1, DISPATCH_TIME_FOREVER);
+    //DISPATCH_TIME_FOREVER
+    //只要属于该group的处理没有执行完就一直等待下去
+    
+    dispatch_release(group1);
+    
+    dispatch_time_t time1 = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    long result = dispatch_group_wait(group1, time1);
+    
+    
+    //经过指定时间后
+    if (result == 0) {
+        //属于该group 的全部执行完毕
+    }else{
+        //属于该group的还在执行中
+    }
+    
+    //这里的等待意味着  一旦调用此函数
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
