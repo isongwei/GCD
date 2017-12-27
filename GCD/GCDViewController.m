@@ -467,11 +467,69 @@
 #pragma mark =============Dispatch I/O=============
 ///如果文件较大可以分割成较小文件进行读取
     
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading1") ;});
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading2"); });
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading3") ;});
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading4"); });
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading5"); });
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading10-20") ;});
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading20-30"); });
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading30-40") ;});
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading40-50"); });
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{ NSLog(@"reading50-60"); });
+    
+    
+    
+#pragma mark - ===============Dispatch Source===============
+
+    //定时器
+    
+    //第一个参数指定类型
+    //第二个参数 Apple的API介绍说，暂时没有使用，传0即可。
+    //第三个参数：unsigned long mask Apple的API介绍说，使用DISPATCH_TIMER_STRICT，会引起电量消耗加剧，毕竟要求精确时间，所以一般传0即可，视业务情况而定。
+    //第四个参数：dispatch_queue_t _Nullable queue 队列，将定时器事件处理的Block提交到哪个队列之上。可以传Null，默认为全局队列。注意：当提交到全局队列的时候，时间处理的回调内，需要异步获取UI线程，更新UI...不过这好像是常识，又啰嗦了...
+    
+    
+    
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    
+    
+    //定时器
+    //dispatch_time_t start, 定时器开始时间，类型为 dispatch_time_t，其API的abstract标明可参照dispatch_time()和dispatch_walltime()，同为设置时间，但是后者为“钟表”时间，相对比较准确，所以选择使用后者。dispatch_walltime(const struct timespec *_Nullable when, int64_t delta),参数when可以为Null，默认为获取当前时间，参数delta为增量，即获取当前时间的基础上，增加X秒的时间为开始计时时间，此处传0即可。
+    
+    
+    //定时器间隔时长，由业务需求而定。
+    //允许误差，此处传0即可。
+    if (1) {
+        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1ull * NSEC_PER_SEC, 0);
+    }else{
+        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC, 2 * NSEC_PER_SEC);
+    }
+    
+    
+   
+    dispatch_source_set_event_handler(timer, ^{
+        //处理事件
+        NSLog(@"wake up");
+        //取消
+        dispatch_source_cancel(timer);
+        
+        
+    });
+    
+    //调度源提供了源事件的处理回调，同时也提供了取消源事件处理的回调，使用非常方便。
+    dispatch_source_set_cancel_handler(timer, ^{
+        dispatch_release(timer);
+    });
+    
+    //启动
+    
+    dispatch_resume(timer);
+    
+    
+    //可以发现 dispatch queue没有取消的概念
+    
+    //但是 dispatch source 是有的
+    //而且取消时必须执行的处理可指定为回调的Block形式
+    
+    
+    
+    
     
     
     
